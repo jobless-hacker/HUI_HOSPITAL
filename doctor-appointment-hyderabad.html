@@ -1,14 +1,17 @@
 <!DOCTYPE html>
-<html lang="en-IN">
+<html lang="en-IN" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
     <title>Doctor Appointment in Hyderabad | HUI General Hospital</title>
     <meta name="description" content="Book doctor appointment in Hyderabad at HUI General Hospital. Choose department, select specialist doctor, and schedule consultation online.">
     <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1">
+    <meta name="theme-color" content="#0066cc">
     <link rel="canonical" href="./doctor-appointment-hyderabad.html">
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="manifest" href="site.webmanifest">
+
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="HUI General Hospital">
     <meta property="og:locale" content="en_IN">
@@ -16,75 +19,97 @@
     <meta property="og:description" content="Schedule doctor appointments online in Hyderabad with department and specialist matching at HUI Hospital.">
     <meta property="og:url" content="./doctor-appointment-hyderabad.html">
     <meta property="og:image" content="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80&w=1600">
+
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Doctor Appointment in Hyderabad | HUI General Hospital">
     <meta name="twitter:description" content="Book online consultation in Hyderabad by selecting department and specialist doctor.">
+    <meta name="twitter:image" content="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80&w=1600">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="vendor/fontawesome/css/all.min.css">
+
     <script src="theme-init.js"></script>
     <script src="vendor/tailwind/tailwindcss-cdn.js"></script>
     <script src="tailwind-config.js"></script>
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "How do I book a doctor appointment in Hyderabad at HUI Hospital?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Open the appointment flow, choose a department and doctor, then submit your patient details for confirmation."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Can I choose a doctor first while booking?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Yes. Selecting a doctor auto-maps the related department in the booking form."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Can I filter doctors by department?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Yes. Selecting a department shows all doctors from that department in the appointment form."
-          }
-        }
-      ]
-    }
-    </script>
+
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I book a doctor appointment in Hyderabad at HUI Hospital?","acceptedAnswer":{"@type":"Answer","text":"Choose a department and doctor, add patient details, and submit for confirmation."}},{"@type":"Question","name":"Can I choose a doctor first while booking?","acceptedAnswer":{"@type":"Answer","text":"Yes. Doctor-first booking auto-selects the related department in the form."}},{"@type":"Question","name":"Can I filter doctors by department?","acceptedAnswer":{"@type":"Answer","text":"Yes. Department selection shows only doctors mapped to that department."}}]}</script>
+
     <link rel="stylesheet" href="styles.css">
 </head>
-<body class="bg-surface text-slate-900 dark:bg-dark dark:text-slate-100">
-    <main class="container mx-auto px-4 md:px-8 py-12 max-w-4xl">
-        <a href="./" class="text-primary-600 font-semibold">Back to Homepage</a>
-        <nav class="mt-4 flex flex-wrap gap-4 text-sm">
-            <a href="./doctor-appointment-hyderabad.html" class="text-primary-600 font-semibold">Appointments</a>
-            <a href="./doctors.html" class="text-primary-600">Doctors</a>
-            <a href="./departments.html" class="text-primary-600">Departments</a>
-            <a href="./emergency-hospital-hyderabad.html" class="text-primary-600">Emergency</a>
-        </nav>
+<body class="bg-surface text-slate-800 dark:bg-dark dark:text-slate-200 transition-colors duration-300 antialiased flex flex-col min-h-screen">
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[120] focus:bg-white focus:text-slate-900 focus:px-3 focus:py-2 focus:rounded-md">Skip to main content</a>
 
-        <h1 class="h1 mt-4 mb-4">Doctor Appointment in Hyderabad</h1>
-        <p class="text-slate-600 dark:text-slate-300 mb-4">
-            HUI General Hospital provides online doctor appointment booking in Hyderabad with department and specialist mapping.
-        </p>
-        <p class="text-slate-600 dark:text-slate-300 mb-8">
-            You can start by department or specialist name, then finalize your consultation request in one workflow.
-        </p>
+    <div class="bg-primary-900 text-white text-xs py-2 px-4 md:px-8 flex justify-between items-center z-50 relative">
+        <div class="flex items-center gap-2">
+            <i class="fa-solid fa-truck-medical text-red-400"></i>
+            <span class="font-semibold tracking-wider">Emergency: +91-98855-00110</span>
+        </div>
+        <a href="./#home" class="hover:text-primary-100 transition-colors hidden sm:block">Book Appointment</a>
+    </div>
 
-        <section class="rounded-xl border border-slate-200 dark:border-slate-700 p-5 mb-8">
-            <h2 class="h4 mb-3">How Online Booking Works</h2>
+    <header id="main-header" class="sticky top-0 w-full bg-white/90 dark:bg-slate-800/90 backdrop-blur-md shadow-sm z-40 transition-all duration-300">
+        <div class="container mx-auto px-4 md:px-8 py-4 flex justify-between items-center">
+            <a href="./#home" class="flex items-center gap-3 group" aria-label="HUI Hospital Home">
+                <div class="w-10 h-10 rounded-lg bg-primary-600 text-white flex items-center justify-center text-xl shadow-lg group-hover:scale-105 transition-transform">
+                    <i class="fa-solid fa-staff-snake"></i>
+                </div>
+                <div>
+                    <p class="font-heading font-bold text-xl leading-tight text-primary-900 dark:text-white">HUI Hospital</p>
+                    <p class="text-[10px] text-slate-500 dark:text-slate-400 uppercase tracking-widest">General Hospital</p>
+                </div>
+            </a>
+
+            <nav class="hidden md:flex items-center gap-8 font-medium">
+                <a href="./#home" class="nav-link hover:text-primary-600 dark:hover:text-primary-100 transition-colors">Home</a>
+                <a href="./departments.html" class="nav-link hover:text-primary-600 dark:hover:text-primary-100 transition-colors">Departments</a>
+                <a href="./doctors.html" class="nav-link active text-primary-600 dark:text-primary-100">Doctors</a>
+                <a href="./facilities.html" class="nav-link hover:text-primary-600 dark:hover:text-primary-100 transition-colors">Facilities</a>
+            </nav>
+
+            <div class="flex items-center gap-4">
+                <button id="theme-toggle" class="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors" aria-label="Toggle Dark Mode">
+                    <i class="fa-solid fa-moon dark:hidden text-slate-600"></i>
+                    <i class="fa-solid fa-sun hidden dark:block text-yellow-400"></i>
+                </button>
+                <a href="./#home" class="hidden sm:inline-flex items-center bg-primary-600 hover:bg-primary-700 text-white px-5 py-2.5 rounded-full font-semibold shadow-md transition-all">Book Appointment</a>
+            </div>
+        </div>
+    </header>
+
+    <main id="main-content" class="flex-grow py-12 bg-surface dark:bg-dark">
+        <div class="container mx-auto px-4 md:px-8 max-w-4xl">
+            <div class="text-sm text-slate-500 dark:text-slate-400 mb-4"><a href="./#home" class="hover:text-primary-600">Home</a><span class="px-2">/</span><span class="text-slate-700 dark:text-slate-200">Appointments</span></div>
+
+            <section class="rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-6 md:p-8 mb-8 shadow-sm">
+                <nav class="mb-5 flex flex-wrap gap-4 text-sm">
+                    <a href="./doctor-appointment-hyderabad.html" class="text-primary-600 font-semibold">Appointments</a>
+                    <a href="./doctors.html" class="text-primary-600">Doctors</a>
+                    <a href="./departments.html" class="text-primary-600">Departments</a>
+                    <a href="./emergency-hospital-hyderabad.html" class="text-primary-600">Emergency</a>
+                </nav>
+                <h1 class="h1 mb-4 text-slate-900 dark:text-white">Doctor Appointment in Hyderabad</h1>
+                <p class="text-slate-600 dark:text-slate-300 mb-4">HUI General Hospital provides online doctor appointment booking in Hyderabad with department and specialist mapping.</p>
+                <p class="text-slate-600 dark:text-slate-300 mb-8">You can start by department or specialist name, then finalize your consultation request in one workflow.</p>
+            </section>
+
+            
+            <section class="rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-6 md:p-8 mb-8 shadow-sm">
+                <h2 class="h3 mb-4">How Online Booking Works</h2>
+                
             <ol class="list-decimal pl-6 space-y-2 text-slate-600 dark:text-slate-300">
                 <li>Select department and specialist doctor.</li>
                 <li>Enter patient name, age, contact number, and visit reason.</li>
                 <li>Submit booking and receive confirmation by SMS.</li>
             </ol>
-        </section>
-
-        <section class="rounded-xl border border-slate-200 dark:border-slate-700 p-5 mb-8">
-            <h2 class="h4 mb-3">Popular Appointment Categories</h2>
+        
+            </section>
+        
+            <section class="rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-6 md:p-8 mb-8 shadow-sm">
+                <h2 class="h3 mb-4">Popular Appointment Categories</h2>
+                
             <ul class="list-disc pl-6 space-y-2 text-slate-600 dark:text-slate-300">
                 <li>Cardiology consultation in Hyderabad</li>
                 <li>Neurology consultation in Hyderabad</li>
@@ -92,27 +117,56 @@
                 <li>Pediatrics and child health consultation</li>
                 <li>Oncology follow-up and second opinion visits</li>
             </ul>
-        </section>
+        
+            </section>
+        
 
-        <section class="mb-8">
-            <h2 class="h4 mb-4">Frequently Asked Questions</h2>
-            <div class="space-y-3">
-                <details class="rounded-lg border border-slate-200 dark:border-slate-700 p-4">
-                    <summary class="font-semibold cursor-pointer">How do I book a doctor appointment in Hyderabad at HUI Hospital?</summary>
-                    <p class="mt-2 text-slate-600 dark:text-slate-300">Choose a department and doctor, add patient details, and submit for confirmation.</p>
-                </details>
-                <details class="rounded-lg border border-slate-200 dark:border-slate-700 p-4">
-                    <summary class="font-semibold cursor-pointer">Can I choose a doctor first while booking?</summary>
-                    <p class="mt-2 text-slate-600 dark:text-slate-300">Yes. Doctor-first booking auto-selects the related department in the form.</p>
-                </details>
-                <details class="rounded-lg border border-slate-200 dark:border-slate-700 p-4">
-                    <summary class="font-semibold cursor-pointer">Can I filter doctors by department?</summary>
-                    <p class="mt-2 text-slate-600 dark:text-slate-300">Yes. Department selection shows only doctors mapped to that department.</p>
-                </details>
+            <section class="rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-6 md:p-8 mb-8 shadow-sm">
+                <h2 class="h3 mb-4">Frequently Asked Questions</h2>
+                <div class="space-y-3">
+                
+                    <details class="rounded-lg border border-slate-200 dark:border-slate-700 p-4">
+                        <summary class="font-semibold cursor-pointer">How do I book a doctor appointment in Hyderabad at HUI Hospital?</summary>
+                        <p class="mt-2 text-slate-600 dark:text-slate-300">Choose a department and doctor, add patient details, and submit for confirmation.</p>
+                    </details>
+                
+                    <details class="rounded-lg border border-slate-200 dark:border-slate-700 p-4">
+                        <summary class="font-semibold cursor-pointer">Can I choose a doctor first while booking?</summary>
+                        <p class="mt-2 text-slate-600 dark:text-slate-300">Yes. Doctor-first booking auto-selects the related department in the form.</p>
+                    </details>
+                
+                    <details class="rounded-lg border border-slate-200 dark:border-slate-700 p-4">
+                        <summary class="font-semibold cursor-pointer">Can I filter doctors by department?</summary>
+                        <p class="mt-2 text-slate-600 dark:text-slate-300">Yes. Department selection shows only doctors mapped to that department.</p>
+                    </details>
+                
+                </div>
+            </section>
+
+            <div class="flex flex-wrap gap-3">
+                <a class="btn bg-primary-600 text-white hover:bg-primary-700" href="./#home">Book Appointment</a>
+                <a class="btn border border-slate-300 dark:border-slate-600" href="./doctors.html">Find Doctors</a>
             </div>
-        </section>
-
-        <a class="btn bg-primary-600 text-white hover:bg-primary-700" href="./#home">Book Appointment In App</a>
+        </div>
     </main>
+
+    <footer class="bg-slate-900 text-slate-300 pt-10 pb-6 border-t border-slate-800 mt-auto">
+        <div class="container mx-auto px-4 md:px-8 flex flex-col md:flex-row justify-between items-start gap-6">
+            <div>
+                <h2 class="font-heading font-bold text-white text-lg mb-2">HUI General Hospital</h2>
+                <p class="text-sm text-slate-400 max-w-md">Specialized tertiary care in Hyderabad with integrated departments, diagnostics, emergency support, and online appointments.</p>
+            </div>
+            <div class="text-sm space-y-2">
+                <a href="./doctors.html" class="block hover:text-primary-400">Doctors</a>
+                <a href="./departments.html" class="block hover:text-primary-400">Departments</a>
+                <a href="./facilities.html" class="block hover:text-primary-400">Facilities</a>
+            </div>
+        </div>
+        <div class="container mx-auto px-4 md:px-8 pt-6 mt-6 border-t border-slate-800 text-xs text-slate-500">
+            &copy; <span id="footer-year"></span> HUI General Hospital. All rights reserved.
+        </div>
+    </footer>
+
+    <script src="static-page.js"></script>
 </body>
 </html>

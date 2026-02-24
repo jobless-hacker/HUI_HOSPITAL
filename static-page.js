@@ -54,6 +54,17 @@
         yearNode.textContent = String(new Date().getFullYear());
     }
 
+    function hydrateActiveNavAria() {
+        var navLinks = document.querySelectorAll('.nav-link');
+        navLinks.forEach(function (link) {
+            if (link.classList.contains('active')) {
+                link.setAttribute('aria-current', 'page');
+                return;
+            }
+            link.removeAttribute('aria-current');
+        });
+    }
+
     function applyPageTitle() {
         var titleNode = document.getElementById('department-page-title');
         var metaTitle = document.title;
@@ -63,5 +74,6 @@
     applyTheme(readStoredTheme());
     bindThemeToggle();
     hydrateYear();
+    hydrateActiveNavAria();
     applyPageTitle();
 })();
