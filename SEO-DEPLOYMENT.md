@@ -14,6 +14,13 @@
    - `https://jobless-hacker.github.io/HUI_HOSPITAL/doctor-appointment-hyderabad.html`
    - `https://jobless-hacker.github.io/HUI_HOSPITAL/emergency-hospital-hyderabad.html`
    - `https://jobless-hacker.github.io/HUI_HOSPITAL/cardiology-hospital-hyderabad.html`
+   - `https://jobless-hacker.github.io/HUI_HOSPITAL/department-cardiology-hyderabad.html`
+   - `https://jobless-hacker.github.io/HUI_HOSPITAL/department-neurology-hyderabad.html`
+   - `https://jobless-hacker.github.io/HUI_HOSPITAL/department-orthopedics-hyderabad.html`
+   - `https://jobless-hacker.github.io/HUI_HOSPITAL/department-pediatrics-neonatology-hyderabad.html`
+   - `https://jobless-hacker.github.io/HUI_HOSPITAL/department-oncology-hyderabad.html`
+   - `https://jobless-hacker.github.io/HUI_HOSPITAL/department-radiology-imaging-hyderabad.html`
+   - `https://jobless-hacker.github.io/HUI_HOSPITAL/department-emergency-trauma-hyderabad.html`
 5. Keep the site online and unchanged for a few days while Google re-crawls.
 
 ## Notes

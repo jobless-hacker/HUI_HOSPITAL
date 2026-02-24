@@ -150,6 +150,13 @@ const app = (function () {
         return `${origin}${path}`;
     }
 
+    function buildAbsolutePageUrl(relativePath = '') {
+        const normalizedRelativePath = String(relativePath || '').replace(/^\.?\//, '');
+        const baseUrl = getBaseCanonicalUrl();
+        const baseWithSlash = baseUrl.endsWith('/') ? baseUrl : `${baseUrl}/`;
+        return normalizedRelativePath ? `${baseWithSlash}${normalizedRelativePath}` : baseWithSlash;
+    }
+
     function updateRouteSeo(route = 'home') {
         const normalizedRoute = String(route || 'home').toLowerCase();
         const routeSeo = SEO_BY_ROUTE[normalizedRoute] || SEO_DEFAULT;
@@ -202,7 +209,8 @@ const app = (function () {
             department: departments.map((department) => ({
                 '@type': 'MedicalClinic',
                 name: String(department.name || ''),
-                description: String(department.description || '')
+                description: String(department.description || ''),
+                url: buildAbsolutePageUrl(getDepartmentSeoPagePath(department))
             })).filter((department) => department.name)
         };
 
@@ -913,6 +921,27 @@ const app = (function () {
     }
 
     // --- Component Generators (using templates from index.html) ---
+    function getDepartmentSeoPagePath(department) {
+        const departmentId = String(department?.id || '').trim();
+        const departmentPageMap = {
+            'dep-01': 'department-cardiology-hyderabad.html',
+            'dep-02': 'department-neurology-hyderabad.html',
+            'dep-03': 'department-orthopedics-hyderabad.html',
+            'dep-04': 'department-pediatrics-neonatology-hyderabad.html',
+            'dep-05': 'department-oncology-hyderabad.html',
+            'dep-06': 'department-radiology-imaging-hyderabad.html',
+            'dep-07': 'department-emergency-trauma-hyderabad.html'
+        };
+        if (departmentPageMap[departmentId]) return departmentPageMap[departmentId];
+
+        const safeName = String(department?.name || 'department')
+            .toLowerCase()
+            .replace(/&/g, ' and ')
+            .replace(/[^a-z0-9]+/g, '-')
+            .replace(/^-+|-+$/g, '');
+        return `department-${safeName || 'general'}-hyderabad.html`;
+    }
+
     function buildDepartmentCard(dept) {
         const tpl = document.getElementById('tpl-department-card');
         const clone = tpl.content.cloneNode(true);
@@ -938,6 +967,13 @@ const app = (function () {
             if(safeDept.tags[0] === '24/7') pill.classList.add('bg-red-100', 'text-red-700', 'dark:bg-red-900/40', 'dark:text-red-400');
         } else {
             pill.style.display = 'none';
+        }
+
+        const deptLink = clone.querySelector('.dept-link');
+        if (deptLink) {
+            const departmentPagePath = getDepartmentSeoPagePath(safeDept);
+            deptLink.setAttribute('href', departmentPagePath);
+            deptLink.setAttribute('aria-label', `Explore ${deptName} services`);
         }
 
         // Return outerHTML of the wrapper (hack for template clones in string building)
