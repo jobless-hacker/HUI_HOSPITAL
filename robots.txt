@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Keep this file publicly accessible in production.
+Sitemap: /sitemap.xml

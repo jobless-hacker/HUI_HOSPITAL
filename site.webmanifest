@@ -1,0 +1,18 @@
+{
+  "name": "HUI General Hospital",
+  "short_name": "HUI Hospital",
+  "description": "HUI General Hospital in Hyderabad with online appointment booking and specialist care.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#0f172a",
+  "theme_color": "#0066cc",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

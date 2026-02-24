@@ -1,0 +1,648 @@
+@charset "UTF-8";
+
+/* ==========================================================================
+   HUI General Hospital - Core Stylesheet
+   Architecture: 
+   1. CSS Variables (Theming & Tokens)
+   2. Base & Resets (Enhancing Tailwind Preflight)
+   3. Fluid Typography
+   4. Custom Scrollbars & Selection
+   5. Animations & Keyframes
+   6. Layout Components & Grid Systems
+   7. Form Controls (Custom Checkboxes, Radios, Focus States)
+   8. Modals, Toasts, & Overlays
+   9. Specific UI Components (Cards, Avatars, Badges)
+   10. Glassmorphism & Depth Utilities
+   11. Print Stylesheets
+   ========================================================================== */
+
+/* ==========================================================================
+   1. CSS Variables (Theming & Tokens)
+   ========================================================================== */
+:root {
+    /* Color Palette - Light Theme */
+    --color-primary-50: #eff6ff;
+    --color-primary-100: #dbeafe;
+    --color-primary-200: #bfdbfe;
+    --color-primary-300: #93c5fd;
+    --color-primary-400: #60a5fa;
+    --color-primary-500: #3b82f6;
+    --color-primary-600: #0066cc; /* Brand Main */
+    --color-primary-700: #1d4ed8;
+    --color-primary-800: #1e40af;
+    --color-primary-900: #1e3a8a;
+
+    --color-secondary-main: #00a89a;
+    --color-secondary-light: #2dd4bf;
+    --color-secondary-dark: #0f766e;
+
+    --color-surface: #ffffff;
+    --color-surface-muted: #f8fafc;
+    --color-surface-raised: #ffffff;
+
+    --color-text-main: #0f172a;
+    --color-text-muted: #64748b;
+    --color-text-disabled: #94a3b8;
+
+    --color-border: #e2e8f0;
+    --color-border-hover: #cbd5e1;
+
+    --color-success: #10b981;
+    --color-warning: #f59e0b;
+    --color-error: #ef4444;
+    --color-info: #0ea5e9;
+
+    /* Spacing & Sizing */
+    --space-1: 0.25rem;
+    --space-2: 0.5rem;
+    --space-3: 0.75rem;
+    --space-4: 1rem;
+    --space-6: 1.5rem;
+    --space-8: 2rem;
+    --space-12: 3rem;
+    --space-16: 4rem;
+    --space-24: 6rem;
+
+    /* Radii */
+    --radius-sm: 0.25rem;
+    --radius-md: 0.5rem;
+    --radius-lg: 1rem;
+    --radius-xl: 1.5rem;
+    --radius-full: 9999px;
+
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --shadow-glow: 0 0 15px rgba(0, 102, 204, 0.3);
+
+    /* Transitions & Easing */
+    --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+    --ease-in-out-circ: cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    --transition-fast: 150ms var(--ease-out-expo);
+    --transition-normal: 300ms var(--ease-out-expo);
+    --transition-slow: 500ms var(--ease-in-out-circ);
+
+    /* Z-Index Scale */
+    --z-below: -1;
+    --z-normal: 1;
+    --z-above: 10;
+    --z-sticky: 100;
+    --z-dropdown: 200;
+    --z-modal-backdrop: 300;
+    --z-modal: 400;
+    --z-toast: 500;
+}
+
+/* Dark Theme Overrides */
+html.dark {
+    --color-surface: #0f1724;
+    --color-surface-muted: #1e293b;
+    --color-surface-raised: #334155;
+
+    --color-text-main: #f8fafc;
+    --color-text-muted: #94a3b8;
+    --color-text-disabled: #475569;
+
+    --color-border: #334155;
+    --color-border-hover: #475569;
+
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.5);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.4);
+    --shadow-glow: 0 0 15px rgba(59, 130, 246, 0.2);
+}
+
+/* ==========================================================================
+   2. Base & Resets
+   ========================================================================== */
+*, *::before, *::after {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    font-size: 16px; /* Base size */
+}
+
+html.light { color-scheme: light; }
+html.dark { color-scheme: dark; }
+
+body {
+    margin: 0;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background-color: var(--color-surface);
+    color: var(--color-text-main);
+    line-height: 1.6;
+    overflow-x: hidden;
+    transition: background-color var(--transition-normal), color var(--transition-normal);
+}
+
+/* ==========================================================================
+   3. Fluid Typography
+   ========================================================================== */
+h1, .h1 { font-size: clamp(2.5rem, 5vw, 4rem); font-family: 'Poppins', sans-serif; line-height: 1.1; letter-spacing: -0.02em; }
+h2, .h2 { font-size: clamp(2rem, 4vw, 3rem); font-family: 'Poppins', sans-serif; line-height: 1.2; letter-spacing: -0.01em; }
+h3, .h3 { font-size: clamp(1.5rem, 3vw, 2.25rem); font-family: 'Poppins', sans-serif; line-height: 1.3; }
+h4, .h4 { font-size: clamp(1.25rem, 2vw, 1.5rem); font-family: 'Poppins', sans-serif; line-height: 1.4; }
+p { margin-bottom: 1rem; max-width: 70ch; }
+.text-balance { text-wrap: balance; } /* Modern CSS feature for better headline wrapping */
+
+/* ==========================================================================
+   4. Custom Scrollbars & Selection
+   ========================================================================== */
+::selection {
+    background-color: var(--color-primary-500);
+    color: #ffffff;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--color-surface-muted);
+    border-left: 1px solid var(--color-border);
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--color-border-hover);
+    border-radius: var(--radius-full);
+    border: 2px solid var(--color-surface-muted);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: var(--color-primary-400);
+}
+
+html.dark ::-webkit-scrollbar-track { border-left: 1px solid var(--color-border); }
+html.dark ::-webkit-scrollbar-thumb { background-color: var(--color-text-disabled); border: 2px solid var(--color-surface-muted); }
+html.dark ::-webkit-scrollbar-thumb:hover { background-color: var(--color-primary-500); }
+
+/* Horizontal scrolling for doctor cards */
+.hide-scrollbar::-webkit-scrollbar { display: none; }
+.hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* ==========================================================================
+   5. Animations & Keyframes
+   ========================================================================== */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInLeft {
+    from { opacity: 0; transform: translateX(40px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeInRight {
+    from { opacity: 0; transform: translateX(-40px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes scaleIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes pulseGlow {
+    0% { box-shadow: 0 0 0 0 rgba(0, 102, 204, 0.4); }
+    70% { box-shadow: 0 0 0 15px rgba(0, 102, 204, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(0, 102, 204, 0); }
+}
+
+@keyframes shimmer {
+    0% { background-position: -1000px 0; }
+    100% { background-position: 1000px 0; }
+}
+
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+@keyframes slideInToast {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slideOutToast {
+    from { transform: translateX(0); opacity: 1; }
+    to { transform: translateX(100%); opacity: 0; }
+}
+
+@keyframes spin-slow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Utility classes for animations */
+.animate-fade-in-up { animation: fadeInUp 0.6s var(--ease-out-expo) forwards; opacity: 0; }
+.animate-fade-in-down { animation: fadeInDown 0.6s var(--ease-out-expo) forwards; opacity: 0; }
+.animate-fade-in-left { animation: fadeInLeft 0.6s var(--ease-out-expo) forwards; opacity: 0; }
+.animate-fade-in-right { animation: fadeInRight 0.6s var(--ease-out-expo) forwards; opacity: 0; }
+.animate-scale-in { animation: scaleIn 0.5s var(--ease-spring) forwards; opacity: 0; }
+.animate-float { animation: float 6s ease-in-out infinite; }
+.animate-pulse-glow { animation: pulseGlow 2s infinite; }
+.animate-spin-slow { animation: spin-slow 8s linear infinite; }
+
+/* Staggered Delays for lists/grids */
+.delay-100 { animation-delay: 100ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+.delay-400 { animation-delay: 400ms; }
+.delay-500 { animation-delay: 500ms; }
+
+/* Respect User Preferences */
+@media (prefers-reduced-motion: reduce) {
+    *, ::before, ::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* ==========================================================================
+   6. Layout Components & Grid Systems
+   ========================================================================== */
+.hero-gradient-overlay {
+    background: linear-gradient(135deg, rgba(2, 6, 23, 0.72) 0%, rgba(15, 23, 42, 0.35) 100%);
+}
+
+html.light .hero-gradient-overlay {
+    background: linear-gradient(135deg, rgba(2, 6, 23, 0.66) 0%, rgba(15, 23, 42, 0.3) 100%);
+}
+
+html.dark .hero-gradient-overlay {
+    background: linear-gradient(135deg, rgba(2, 6, 23, 0.84) 0%, rgba(15, 23, 42, 0.5) 100%);
+}
+
+/* Auto-fit Grids */
+.grid-auto-fit-sm { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--space-4); }
+.grid-auto-fit-md { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-6); }
+.grid-auto-fit-lg { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: var(--space-8); }
+
+/* Bento Box Layout for analytics/stats */
+.bento-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: minmax(150px, auto);
+    gap: var(--space-4);
+}
+.bento-item-large { grid-column: span 2; grid-row: span 2; }
+.bento-item-wide { grid-column: span 2; grid-row: span 1; }
+.bento-item-tall { grid-column: span 1; grid-row: span 2; }
+
+@media (max-width: 768px) {
+    .bento-grid { grid-template-columns: repeat(2, 1fr); }
+    .bento-item-large, .bento-item-wide { grid-column: span 2; }
+    .bento-item-tall { grid-column: span 1; grid-row: span 1; }
+}
+
+@media (max-width: 480px) {
+    .bento-grid { grid-template-columns: 1fr; }
+    .bento-item-large, .bento-item-wide, .bento-item-tall { grid-column: span 1; grid-row: auto; }
+}
+
+/* ==========================================================================
+   7. Form Controls (Inputs, Selects, Focus States)
+   ========================================================================== */
+.form-input, .form-select, .form-textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    color: var(--color-text-main);
+    font-family: inherit;
+    font-size: 1rem;
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast), background-color var(--transition-fast);
+}
+
+.form-textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.form-input:hover, .form-select:hover, .form-textarea:hover {
+    border-color: var(--color-border-hover);
+}
+
+.form-input:focus, .form-select:focus, .form-textarea:focus {
+    outline: none;
+    border-color: var(--color-primary-500);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+    background-color: var(--color-surface);
+}
+
+.form-input:disabled, .form-select:disabled, .form-textarea:disabled {
+    opacity: 0.8;
+    color: var(--color-text-disabled);
+    border-style: dashed;
+    cursor: not-allowed;
+}
+
+/* Error States */
+.form-input.is-invalid, .form-select.is-invalid, .form-textarea.is-invalid {
+    border-color: var(--color-error);
+}
+.form-input.is-invalid:focus {
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.2);
+}
+
+.error-message {
+    color: var(--color-error);
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    animation: fadeInUp 0.3s ease-out forwards;
+}
+
+/* Custom Checkbox */
+.custom-checkbox {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 1.25rem;
+    height: 1.25rem;
+    border: 2px solid var(--color-border);
+    border-radius: 0.25rem;
+    background-color: var(--color-surface);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+.custom-checkbox:checked {
+    background-color: var(--color-primary-600);
+    border-color: var(--color-primary-600);
+}
+
+.custom-checkbox:checked::after {
+    content: '\f00c'; /* FontAwesome Check */
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    color: white;
+    font-size: 0.75rem;
+    position: absolute;
+}
+
+.custom-checkbox:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+}
+
+/* Custom Label Styling */
+.form-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    font-size: 0.875rem;
+    color: var(--color-text-main);
+}
+
+/* Dark Mode Form Overrides */
+html.dark .form-input, html.dark .form-select, html.dark .form-textarea {
+    background-color: var(--color-surface-raised);
+    color: var(--color-text-main);
+}
+html.dark .form-input:focus { background-color: var(--color-surface); }
+
+/* ==========================================================================
+   8. Modals, Toasts, & Overlays
+   ========================================================================== */
+.modal-overlay {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+.modal-content {
+    box-shadow: var(--shadow-lg), 0 0 40px rgba(0,0,0,0.1);
+}
+html.dark .modal-content {
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.8), 0 10px 10px -5px rgba(0, 0, 0, 0.6);
+}
+
+/* Toast System */
+.toast {
+    min-width: 300px;
+    padding: 1rem 1.25rem;
+    border-radius: var(--radius-md);
+    background-color: var(--color-surface-raised);
+    color: var(--color-text-main);
+    box-shadow: var(--shadow-lg);
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    pointer-events: auto;
+    border-left: 4px solid transparent;
+    animation: slideInToast 0.4s var(--ease-spring) forwards;
+}
+
+.toast.toast-success { border-left-color: var(--color-success); }
+.toast.toast-error { border-left-color: var(--color-error); }
+.toast.toast-info { border-left-color: var(--color-info); }
+
+.toast.hiding { animation: slideOutToast 0.3s ease-in forwards; }
+
+.toast-icon { font-size: 1.25rem; flex-shrink: 0; }
+.toast-success .toast-icon { color: var(--color-success); }
+.toast-error .toast-icon { color: var(--color-error); }
+.toast-info .toast-icon { color: var(--color-info); }
+
+.toast-content { flex-grow: 1; }
+.toast-title { font-weight: 600; font-size: 0.875rem; margin-bottom: 0.125rem; }
+.toast-message { font-size: 0.875rem; color: var(--color-text-muted); line-height: 1.4; }
+.toast-close { background: none; border: none; color: var(--color-text-muted); cursor: pointer; padding: 0.25rem; border-radius: 50%; transition: background 0.2s; }
+.toast-close:hover { background-color: var(--color-surface-muted); color: var(--color-text-main); }
+
+/* ==========================================================================
+   9. Specific UI Components
+   ========================================================================== */
+
+/* Buttons */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    font-weight: 600;
+    border-radius: var(--radius-md);
+    transition: all var(--transition-fast);
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+}
+.btn:focus-visible { outline: none; box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5); }
+.btn:active { transform: scale(0.98); }
+
+/* Navigation Links underline effect */
+.nav-link {
+    position: relative;
+    text-decoration: none;
+    padding: 0.5rem 0;
+}
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--color-primary-600);
+    transition: width 0.3s ease;
+}
+.nav-link:hover::after, .nav-link.active::after { width: 100%; }
+.nav-link.active, .mobile-nav-link.active { color: var(--color-primary-600); }
+html.dark .nav-link.active, html.dark .mobile-nav-link.active { color: #bfdbfe; }
+
+/* Skeleton Loading State */
+.skeleton {
+    background: #f1f5f9;
+    background: linear-gradient(110deg, #f1f5f9 8%, #e2e8f0 18%, #f1f5f9 33%);
+    background-size: 200% 100%;
+    animation: 1.5s shimmer linear infinite;
+    border-radius: var(--radius-sm);
+}
+
+html.dark .skeleton {
+    background: #1e293b;
+    background: linear-gradient(110deg, #1e293b 8%, #334155 18%, #1e293b 33%);
+    background-size: 200% 100%;
+}
+
+.skeleton-text { height: 1rem; margin-bottom: 0.5rem; width: 100%; }
+.skeleton-text.short { width: 60%; }
+.skeleton-avatar { width: 3rem; height: 3rem; border-radius: 50%; }
+
+/* Avatar Group styling for Testimonials/Doctors */
+.avatar-group { display: flex; align-items: center; }
+.avatar-group > * {
+    border: 2px solid var(--color-surface);
+    margin-left: -0.75rem;
+    transition: transform 0.2s ease, z-index 0.2s ease;
+}
+.avatar-group > *:first-child { margin-left: 0; }
+.avatar-group > *:hover { transform: translateY(-4px); z-index: 10; }
+
+/* Filter Chips */
+.filter-chip {
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-full);
+    background-color: var(--color-surface-muted);
+    border: 1px solid var(--color-border);
+    color: var(--color-text-muted);
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+.filter-chip:hover { border-color: var(--color-primary-400); color: var(--color-primary-600); }
+.filter-chip.active { background-color: var(--color-primary-600); border-color: var(--color-primary-600); color: white; }
+
+/* ==========================================================================
+   10. Glassmorphism & Depth Utilities
+   ========================================================================== */
+.glass {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+html.dark .glass {
+    background: rgba(15, 23, 36, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.glass-card {
+    background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0));
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.18);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+/* Scroll Progress Indicator placed at the top of the body */
+#scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 3px;
+    background: linear-gradient(to right, var(--color-primary-400), var(--color-primary-600));
+    z-index: 9999;
+    transition: width 0.1s ease-out;
+}
+
+/* ==========================================================================
+   11. Print Stylesheets
+   ========================================================================== */
+@media print {
+    /* Hide non-essential elements for printing */
+    header, footer, nav, button, .modal-overlay, #toast-container, .hero-gradient-overlay, #scroll-progress {
+        display: none !important;
+    }
+
+    body {
+        background-color: white !important;
+        color: black !important;
+        font-size: 12pt;
+    }
+
+    html.dark { background-color: white !important; }
+
+    /* Expand containers */
+    main, .container {
+        width: 100% !important;
+        max-width: none !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    /* Page Breaks */
+    h1, h2, h3 { page-break-after: avoid; }
+    .dept-card, .doctor-card, img { page-break-inside: avoid; }
+    
+    /* Ensure colors print (often disabled by default in browsers) */
+    * {
+        -webkit-print-color-adjust: exact !important;
+        color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+
+    /* Redefine links */
+    a[href]::after { content: " (" attr(href) ")"; font-size: 0.85em; color: #555; }
+    a[href^="#"]::after { content: ""; } /* Don't print internal anchor links */
+
+    /* Custom print header for generated reports/appointments */
+    body::before {
+        content: "HUI General Hospital - Official Document";
+        display: block;
+        text-align: center;
+        font-weight: bold;
+        font-size: 16pt;
+        margin-bottom: 20px;
+        border-bottom: 2px solid black;
+        padding-bottom: 10px;
+    }
+}
