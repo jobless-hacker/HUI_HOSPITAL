@@ -76,10 +76,10 @@ window.HUIData = {
         "id": "dep-04",
         "name": "Pediatrics & Neonatology",
         "headDoctorId": "doc-061",
-        "services": ["NICU", "Immunization", "Pediatric Surgery Coordination"],
-        "description": "Comprehensive child health services including NICU and growth clinics.",
+        "services": ["NICU", "PICU", "Newborn Care", "Immunization", "Pediatric Emergency Triage", "Pediatric Surgery Coordination"],
+        "description": "Comprehensive child health services with pediatricians, neonatologists, NICU/PICU support, and newborn care.",
         "workingHours": "Mon-Sun 09:00-17:00",
-        "tags": ["NICU", "Child Health"]
+        "tags": ["NICU", "PICU", "Pediatric Emergency", "Child Health"]
       },
       {
         "id": "dep-05",
