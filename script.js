@@ -106,22 +106,22 @@ const app = (function () {
     const appointmentDepartmentCache = new Map();
     const SEO_DEFAULT = {
         siteName: 'HUI General Hospital',
-        title: 'Best Multi Speciality Hospital in Hyderabad | HUI General Hospital',
-        description: 'HUI General Hospital is a multi speciality hospital in Hyderabad for cardiology, neurology, orthopedics, pediatrics, oncology, diagnostics, and online appointment booking.',
+        title: "Best Multi Speciality & Children's Hospital in Hyderabad | HUI General Hospital",
+        description: 'HUI General Hospital is a multi speciality hospital in Hyderabad with child specialist doctors, pediatrics and neonatology, NICU/PICU support, pediatric emergency care, and online appointments.',
         ogImage: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80&w=1600'
     };
     const SEO_BY_ROUTE = {
         home: {
-            title: 'Best Multi Speciality Hospital in Hyderabad | HUI General Hospital',
-            description: 'Book doctor appointments online at HUI General Hospital, Hyderabad with specialist care and emergency support.'
+            title: "Best Multi Speciality & Children's Hospital in Hyderabad | HUI General Hospital",
+            description: 'Book doctor appointments online at HUI General Hospital, Hyderabad with child specialist care, pediatric support, and emergency services.'
         },
         departments: {
-            title: 'Hospital Departments in Hyderabad | HUI General Hospital',
-            description: 'Explore cardiology, neurology, orthopedics, pediatrics, oncology, radiology, and emergency departments in Hyderabad.'
+            title: 'Hospital Departments in Hyderabad | Pediatrics, NICU & Multi-Speciality Care | HUI General Hospital',
+            description: 'Explore hospital departments in Hyderabad including pediatrics and neonatology, NICU/PICU support, cardiology, neurology, orthopedics, oncology, radiology, and emergency care.'
         },
         doctors: {
-            title: 'Specialist Doctors in Hyderabad | HUI General Hospital',
-            description: 'Find specialist doctors in Hyderabad by department and book appointments online at HUI Hospital.'
+            title: 'Specialist & Child Specialist Doctors in Hyderabad | HUI General Hospital',
+            description: 'Find specialist and child specialist doctors in Hyderabad including pediatricians, neonatologists, emergency physicians, and other consultants with online booking.'
         },
         facilities: {
             title: 'Hospital Facilities in Hyderabad | HUI General Hospital',
@@ -157,11 +157,24 @@ const app = (function () {
         return normalizedRelativePath ? `${baseWithSlash}${normalizedRelativePath}` : baseWithSlash;
     }
 
+    function getRoutePageUrl(route = 'home') {
+        const normalizedRoute = String(route || 'home').toLowerCase();
+        const routePageMap = {
+            home: '',
+            departments: 'departments.html',
+            doctors: 'doctors.html',
+            facilities: 'facilities.html'
+        };
+        const routePage = routePageMap[normalizedRoute];
+        if (routePage === undefined) return `${getBaseCanonicalUrl()}#${normalizedRoute}`;
+        return buildAbsolutePageUrl(routePage);
+    }
+
     function updateRouteSeo(route = 'home') {
         const normalizedRoute = String(route || 'home').toLowerCase();
         const routeSeo = SEO_BY_ROUTE[normalizedRoute] || SEO_DEFAULT;
         const baseUrl = getBaseCanonicalUrl();
-        const routeUrl = normalizedRoute === 'home' ? baseUrl : `${baseUrl}#${normalizedRoute}`;
+        const routeUrl = getRoutePageUrl(normalizedRoute);
         const title = String(routeSeo.title || SEO_DEFAULT.title);
         const description = String(routeSeo.description || SEO_DEFAULT.description);
 
@@ -206,6 +219,13 @@ const app = (function () {
                 postalCode: String(address.pincode || ''),
                 addressCountry: String(address.country || 'IN')
             },
+            areaServed: [String(address.city || 'Hyderabad'), String(address.state || 'Telangana')],
+            openingHours: 'Mo-Su 00:00-23:59',
+            geo: {
+                '@type': 'GeoCoordinates',
+                latitude: 17.385,
+                longitude: 78.4867
+            },
             department: departments.map((department) => ({
                 '@type': 'MedicalClinic',
                 name: String(department.name || ''),
@@ -221,7 +241,7 @@ const app = (function () {
             url: baseUrl,
             potentialAction: {
                 '@type': 'SearchAction',
-                target: `${baseUrl}#doctors`,
+                target: buildAbsolutePageUrl('doctors.html'),
                 'query-input': 'required name=doctor'
             }
         };
@@ -625,7 +645,7 @@ const app = (function () {
             else if (route === 'departments') viewContainer.innerHTML = buildDepartmentsView();
             else if (route === 'doctors') viewContainer.innerHTML = buildDoctorsView();
             else if (route === 'facilities') viewContainer.innerHTML = buildFacilitiesView();
-            else viewContainer.innerHTML = `<div class="p-20 text-center"><h2 class="text-3xl font-bold">404 - Page Not Found</h2><a href="#home" class="text-primary-600 mt-4 inline-block">Return Home</a></div>`;
+            else viewContainer.innerHTML = `<div class="p-20 text-center"><h2 class="text-3xl font-bold">404 - Page Not Found</h2><a href="./" class="text-primary-600 mt-4 inline-block">Return Home</a></div>`;
             
             viewContainer.style.opacity = '1'; // Transition in
             window.scrollTo(0, 0);
@@ -694,7 +714,7 @@ const app = (function () {
                             <button class="js-open-appointment btn bg-primary-600 hover:bg-primary-500 text-white text-lg py-4 px-8 shadow-glow border border-transparent">
                                 ${safePrimaryCta}
                             </button>
-                            <a href="#doctors" class="btn bg-white/10 hover:bg-white/20 text-white text-lg py-4 px-8 backdrop-blur-sm border border-white/20">
+                            <a href="doctors.html" class="btn bg-white/10 hover:bg-white/20 text-white text-lg py-4 px-8 backdrop-blur-sm border border-white/20">
                                 ${safeSecondaryCta}
                             </a>
                         </div>
@@ -723,7 +743,7 @@ const app = (function () {
                             <h2 class="h2 mb-4 text-slate-900 dark:text-white">Centers of Excellence</h2>
                             <p class="text-slate-500 dark:text-slate-400 max-w-2xl">Advanced multi-disciplinary care across specialized departments.</p>
                         </div>
-                        <a href="#departments" class="hidden md:flex items-center gap-2 text-primary-600 font-semibold hover:text-primary-700 transition-colors">
+                        <a href="departments.html" class="hidden md:flex items-center gap-2 text-primary-600 font-semibold hover:text-primary-700 transition-colors">
                             View All <i class="fa-solid fa-arrow-right"></i>
                         </a>
                     </div>
@@ -1528,7 +1548,22 @@ const app = (function () {
 
         // Update active nav links
         document.querySelectorAll('.nav-link, .mobile-nav-link').forEach(link => {
-            const isActive = link.getAttribute('href') === `#${hash}`;
+            const href = String(link.getAttribute('href') || '').trim();
+            const normalizedHref = href.replace(/^\.?\//, '');
+            const routePageMap = {
+                home: '',
+                departments: 'departments.html',
+                doctors: 'doctors.html',
+                facilities: 'facilities.html'
+            };
+            const routePage = routePageMap[hash];
+            const isHashLink = href.startsWith('#');
+            const isActive = isHashLink
+                ? href === `#${hash}`
+                : (
+                    (hash === 'home' && (normalizedHref === '' || normalizedHref === 'index.html' || normalizedHref === '/')) ||
+                    (routePage && normalizedHref.endsWith(routePage))
+                );
             link.classList.toggle('active', isActive);
             if (isActive) link.setAttribute('aria-current', 'page');
             else link.removeAttribute('aria-current');
