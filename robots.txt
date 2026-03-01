@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 
 # Keep this file publicly accessible in production.
-Sitemap: /sitemap.xml
+Sitemap: https://jobless-hacker.github.io/HUI_HOSPITAL/sitemap.xml

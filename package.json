@@ -1,0 +1,25 @@
+{
+  "name": "web_vapt-(2)",
+  "version": "1.0.0",
+  "description": "",
+  "main": "data.js",
+  "scripts": {
+    "build:css": "tailwindcss -c tailwind.config.cjs -i tailwind-input.css -o tailwind.generated.css -m",
+    "test": "echo \"No tests configured\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jobless-hacker/HUI_HOSPITAL.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/jobless-hacker/HUI_HOSPITAL/issues"
+  },
+  "homepage": "https://github.com/jobless-hacker/HUI_HOSPITAL#readme",
+  "devDependencies": {
+    "tailwindcss": "^3.4.17"
+  }
+}

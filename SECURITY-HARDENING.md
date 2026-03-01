@@ -1,9 +1,8 @@
 # Security hardening checklist
 
 ## Already implemented in code
-- Removed inline handlers/scripts from HTML and moved Tailwind config to `tailwind-config.js`.
-- Switched third-party runtime assets to local vendored files:
-  - `vendor/tailwind/tailwindcss-cdn.js`
+- Removed inline handlers/scripts from HTML and switched Tailwind to a compiled stylesheet (`tailwind.generated.css`) built from local source.
+- Switched third-party runtime assets to local vendored files where applicable:
   - `vendor/fontawesome/css/all.min.css`
   - `vendor/fontawesome/webfonts/*`
 - Added CSP + referrer meta tags in `index.html` as fallback.

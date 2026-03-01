@@ -106,21 +106,21 @@ const app = (function () {
     const appointmentDepartmentCache = new Map();
     const SEO_DEFAULT = {
         siteName: 'HUI General Hospital',
-        title: "Best Multi Speciality & Children's Hospital in Hyderabad | HUI General Hospital",
-        description: 'HUI General Hospital is a multi speciality hospital in Hyderabad with child specialist doctors, pediatrics and neonatology, NICU/PICU support, pediatric emergency care, and online appointments.',
+        title: "Children's & Multi Speciality Hospital in Hyderabad | HUI",
+        description: 'Leading multi speciality hospital in Hyderabad with pediatricians, NICU/PICU support, emergency care, specialist doctors, diagnostics, and online appointment booking.',
         ogImage: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80&w=1600'
     };
     const SEO_BY_ROUTE = {
         home: {
-            title: "Best Multi Speciality & Children's Hospital in Hyderabad | HUI General Hospital",
-            description: 'Book doctor appointments online at HUI General Hospital, Hyderabad with child specialist care, pediatric support, and emergency services.'
+            title: "Children's & Multi Speciality Hospital in Hyderabad | HUI",
+            description: 'Book doctor appointments online in Hyderabad with child specialist care, pediatric support, diagnostics, and emergency services.'
         },
         departments: {
-            title: 'Hospital Departments in Hyderabad | Pediatrics, NICU & Multi-Speciality Care | HUI General Hospital',
-            description: 'Explore hospital departments in Hyderabad including pediatrics and neonatology, NICU/PICU support, cardiology, neurology, orthopedics, oncology, radiology, and emergency care.'
+            title: 'Hospital Departments in Hyderabad | HUI General Hospital',
+            description: 'Explore HUI hospital departments in Hyderabad including pediatrics, neonatology, cardiology, neurology, orthopedics, oncology, radiology, and emergency care.'
         },
         doctors: {
-            title: 'Specialist & Child Specialist Doctors in Hyderabad | HUI General Hospital',
+            title: 'Specialist & Child Doctors in Hyderabad | HUI Hospital',
             description: 'Find specialist and child specialist doctors in Hyderabad including pediatricians, neonatologists, emergency physicians, and other consultants with online booking.'
         },
         facilities: {
